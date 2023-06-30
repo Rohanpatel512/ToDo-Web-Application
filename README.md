@@ -7,6 +7,6 @@ A TODO web application.
   throughout the day!  
 
 # Features:
- Sign-in feature -  When user signs in, their information is saved into database.
- Login-feature - When user logs in, the program checks if they've created an account by searching through the database.
- Save feature - Once user logs out their list will be saved for the next time they log in.
+ Sign-in feature -  When user signs in, their information is saved into database.__
+ Login-feature - When user logs in, the program checks if they've created an account by searching through the database.__
+ Save feature - Once user logs out their list will be saved for the next time they log in.__
