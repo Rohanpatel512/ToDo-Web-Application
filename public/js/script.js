@@ -1,3 +1,4 @@
+// Local variables
 let signup_btn = document.getElementById("signup-btn");
 
 // Adds event listeners 
@@ -32,6 +33,9 @@ function closeForm(formName) {
 
 /**
  * Function that checks if user information entered is valid
+ * This function checks if firstname and lastname are valid
+ * and calls help methods to check if username, and password
+ * are valid.
  */
 function checkValid() {
 
@@ -39,9 +43,72 @@ function checkValid() {
     var lastname = document.getElementById('lastname').value;
     var username = document.getElementById('username').value; 
     var password = document.getElementById('password').value;
+    var size = firstname.length;
+    var isValid = false;
 
-    //console.log(firstname + " " + lastname + " " + username + " " + password);
+    if(firstname.length == 0 || lastname.length == 0) {
+        alert("Invalid name!");
+        return;
+    }
 
-    console.log("Checked validation...");
+    if(lastname.length > firstname.length) {
+        size = lastname.length;
+    }
 
+    for(var i = 0; i < size; i++) {
+
+        if(i < firstname.length) {
+            
+            if(isNaN(firstname[i]) == false) {
+                isValid = !isValid;
+                break;
+            }
+
+        }
+
+        if(i < lastname.length) {
+
+            if(isNaN(lastname[i]) == false) {
+                isValid = !isValid;
+                break;
+            }
+
+        }
+    }
+
+    if(passwordValid(password) == false) {
+        isValid = !isValid;
+    }
+
+    if(usernameValid(username) == false) {
+        isValid = !isValid;
+    }
+
+    if(isValid == false) {
+        alert("Name, password or username is invalid!");
+    }
+}
+
+/**
+ * Checks if password has been entered by user (empty or not)
+ * @params password - Password entered by user.
+ * @returns true if password is not empty, false otherwise
+ */
+function passwordValid(password) {
+    if(password == "") {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Checks if username has been entered by user (empty or not)
+ * @params username - Username entered by user.
+ * @returns true if username is not empty, false otherwise
+ */
+function usernameValid(username) {
+    if(username == "") {
+        return false;
+    }
+    return true;
 }
