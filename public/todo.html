@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href='style/todo.css' type="text/css" rel="stylesheet">
     </head>
     <body>
@@ -13,21 +14,22 @@
 
             <div class="todo-container">
                 <div class="todo-title">
-                    <h3>Your Todo</h3>
+                    <h3>Rohan's Todo</h3>
                 </div>
 
                 <div class="todo-input-container">
-                    <input type="text" placeholder="Enter todo here"></input>
-                    <button type="button" id="add-btn">+</button>
+                    <input type="text" id="todo-input" placeholder="Enter todo here"></input>
+                    <button type="button" id="add-btn"><i class='fa fa-plus'></i></button>
                 </div>
 
-                <div class="todo-list-container">
-                    
-                </div>
+                <div class="todo-list-container"></div>
 
             </div>
 
         </header>
+
+
+        <script src="js/todo-app.js" type="text/javascript"></script>
 
 
 
