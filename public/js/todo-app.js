@@ -56,7 +56,7 @@ function addButtons(listElement) {
 
     // Add click event listeners to update and delete button
     updateBtn.addEventListener('click', showUpdateModal, false);
-    deleteBtn.addEventListener('click', deleteTodo);
+    deleteBtn.addEventListener('click', deleteTodo, false);
 
     // Assign ID's to both buttons
     updateBtn.id = 'update-btn';
@@ -104,10 +104,21 @@ function addTodo() {
 
 /**
  * Removes a todo from list 
+ * @event - The event emitted 
  */
-function deleteTodo() {
+function deleteTodo(event) {
 
-    console.log('deleting todo...');
+    // Get the id of list element to be deleted
+    const parentID = event.currentTarget.parentNode.id;
+    
+    // Get the list element to be deleted by using its id
+    const listElement = document.getElementById(parentID);
+
+    // Get the container that holds the list element
+    const listContainer = listElement.parentElement;
+
+    // Remove the list element from container
+    listContainer.removeChild(listElement);
 
 }
 
@@ -137,5 +148,6 @@ function updateTodo() {
  */
 function clearTodo() {
 
+    
 
 }
