@@ -46,13 +46,11 @@ function hideUpdateModal() {
 }
 
 /**
- * Creates a todo container and adds it to the list of todo's
+ * Function that adds update and delete buttons to the list element
+ * @param listElement - The element that stores the todo and buttons
  */
-function addTodo() {
+function addButtons(listElement) {
 
-    var nameOfClass = "";
-
-    const listElement = document.createElement('div');
     const updateBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
 
@@ -64,22 +62,39 @@ function addTodo() {
     updateBtn.id = 'update-btn';
     deleteBtn.id = 'delete-btn';
 
-    // Increase list count value by one, and assign the list element a list count for class name.
-    listCount += 1;
-    nameOfClass += listCount;
-    listElement.className = nameOfClass;
+    updateBtn.innerHTML = '<i class="fa fa-refresh"></i>';
+    deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
+
+    listElement.appendChild(updateBtn);
+    listElement.appendChild(deleteBtn);
+
+}
+
+/**
+ * Creates a todo container and adds it to the list of todo's
+ */
+function addTodo() {
+
+    var nameID = "";
 
     // Get the todo user entered
     const todo = document.querySelector('#todo-input').value;
 
+    // Create a new div element to be part of the list
+    const listElement = document.createElement('div');
+
+    // Increase list count value by one, and assign the list element a list count for class name.
+    listCount += 1;
+    nameID += listCount;
+    listElement.id = nameID;
+
     // Create a new container to store the todo
-    listElement.innerHTML = todo;
-    updateBtn.innerHTML = '<i class="fa fa-refresh"></i>';
-    deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
+    listElement.innerText = todo;
+
+    // Add the delete and update buttons 
+    addButtons(listElement);
 
     // Append all child elements to respectful containers
-    listElement.appendChild(updateBtn);
-    listElement.appendChild(deleteBtn);
     listContainer.appendChild(listElement);
 
     // Empty the input field 
@@ -105,24 +120,16 @@ function updateTodo() {
     const updatedTodo = document.querySelector('#update-input').value;
 
     // Get the name of the div element to be updated
-    var elementClass = selected.className;
+    var elementID = selected.id;
 
-    // Get the element in list to be updated
-    const listElement = document.getElementsByClassName(elementClass);
-    
-    // Update the element 
-    listElement.innerHTML = updatedTodo;
+    // Get the list element to be updated by id
+    const listElement = document.getElementById(elementID);
 
-    /*
-    // Get the updated todo value from user.
-    const updatedTodo = document.querySelector('#update-input').value;
-    // Get the box to be updated.
-    const listElement = document.querySelector(elementClass);
+    // Update the list element
+    listElement.innerText = updatedTodo;
 
-    // Update the list element (todo container).
-    listElement.innerHTML = updatedTodo;
-    selected =  null;
-    */
+    addButtons(listElement);
+
 }
 
 /**
