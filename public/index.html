@@ -27,22 +27,21 @@
                         <div class="form-title">
                             <h3>Sign Up</h3>
                         </div>
-                        <form class="signup-form">
+                        <form class="signup-form" action="/signup" method="post">
                             <label for="firstname">Your Firstname</label><br>
-                            <input type="text" id="firstname" class="input-field"></input><br><br>
+                            <input type="text" name="firstname" id="firstname" class="input-field"></input><br><br>
 
                             <label for="lastname">Your Lastname</label><br>
-                            <input type="text" id="lastname" class="input-field"></input><br><br>
+                            <input type="text" name="lastname" id="lastname" class="input-field"></input><br><br>
 
                             <label for="username">Your Username</label><br>
-                            <input type="text" id="username" class="input-field"></input><br><br>
+                            <input type="text" name="username" id="username" class="input-field"></input><br><br>
 
                             <label for="password">Your Password</label><br>
-                            <input type="password" id="password" class="input-field"></input><br><br>
+                            <input type="password" name="password" id="password" class="input-field"></input><br><br>
 
                             <input type="submit" value="Sign up" id="signup-btn" class="form-btn"/>
                             <input type="submit" value="Close" onclick="closeForm('signup-modal')" class="form-btn"/>
-
                         </form>
                     </div>
                 </div>
@@ -52,15 +51,15 @@
                         <div class="form-title">
                             <h3>Login</h3>
                         </div>
-                        <form class="login-form">
+                        <form class="login-form" action="/login" method="post">
                             <label for="username">Your Username</label><br>
-                            <input type="text" id="username-login" class="input-field"></input><br><br>
+                            <input type="text" name="username" id="username-login" class="input-field"></input><br><br>
 
                             <label for="password">Your Password</label><br>
-                            <input type="password" id="password-login" class="input-field"></input><br><br>
+                            <input type="password" name="password" id="password-login" class="input-field"></input><br><br>
                             
-                            <input type="button" value="Login" id="login-btn" class="form-btn"/>
-                            <input type="button" value="Close" onclick="closeForm('login-modal')" class="form-btn"/>
+                            <input type="submit" value="Login" id="login-btn" class="form-btn"/>
+                            <input type="submit" value="Close" onclick="closeForm('login-modal')" class="form-btn"/>
                         </form>
                     </div>
                 </div>
