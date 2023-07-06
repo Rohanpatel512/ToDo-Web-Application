@@ -1,6 +1,7 @@
 // Constants
 const listContainer = document.querySelector('.todo-list-container');
 const addButton = document.querySelector('#add-btn');
+const clearButton = document.querySelector('#clear-btn');
 const update = document.querySelector('#update');
 const cancel = document.querySelector("#cancel");
 
@@ -10,6 +11,7 @@ let selected = null;
 
 // Event listener 
 addButton.addEventListener('click', addTodo);
+clearButton.addEventListener('click', clearTodo);
 update.addEventListener('click', updateTodo);
 cancel.addEventListener('click', hideUpdateModal);
 
@@ -147,7 +149,8 @@ function updateTodo() {
  * Removes all the todo's within the list
  */
 function clearTodo() {
-
-    
-
+    // Get the list container that holds all todo's
+    const listContainer = document.querySelector('.todo-list-container');
+    // Remove all the todo's
+    listContainer.replaceChildren();
 }
