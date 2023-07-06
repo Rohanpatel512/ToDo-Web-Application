@@ -9,5 +9,8 @@ const server = app.listen(2000);
 
 
 
+
+
+
 // Run all static files in the public directory
 app.use(express.static('public'));
