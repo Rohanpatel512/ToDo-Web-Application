@@ -1,12 +1,17 @@
 // Modules
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+const ejs = require('ejs');
 
 // Create the server with express
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.post('/signup', function(request, response) {
 
@@ -24,11 +29,9 @@ app.post('/login', function(request, response) {
     var username = request.body.username;
     var password = request.body.password;
 
-    console.log(username + " " + password);
+    response.render('todo');
 
 });
-
-
 
 
 // Server listens to port 2000
