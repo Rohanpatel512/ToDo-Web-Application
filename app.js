@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const ejs = require('ejs');
+const fs = require('fs');
 
 // Create the server with express
 const app = express();
@@ -29,7 +30,6 @@ app.post('/login', function(request, response) {
     var username = request.body.username;
     var password = request.body.password;
 
-    response.render('todo');
 
 });
 
