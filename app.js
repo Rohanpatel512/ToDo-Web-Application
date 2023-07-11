@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const ejs = require('ejs');
 const fs = require('fs');
+const mysql = require('mysql2');
 
 // Create the server with express
 const app = express();
@@ -13,6 +14,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// Connect to mysql database 
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Myappdb1*'
+});
+
+connection.connect(function(error) {
+    if(error) {
+        console.log(error);
+    }
+});
 
 app.post('/signup', function(request, response) {
 
