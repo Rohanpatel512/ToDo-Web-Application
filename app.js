@@ -18,8 +18,9 @@ app.set('view engine', 'ejs');
 // Connect to mysql database 
 const connection = mysql.createConnection({
     host: 'localhost',
+    database: 'todo_database',
     user: 'root',
-    password: 'Myappdb1*'
+    password: 'Appdatabase1*'
 });
 
 connection.connect(function(error) {
