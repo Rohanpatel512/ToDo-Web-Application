@@ -9,23 +9,30 @@ const mysql = require('mysql2');
 // Create the server with express
 const app = express();
 
+// Use the dotenv file to get confidential information.
+require('dotenv').config();
+
+// Use the body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Set the view engine to ejs
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Connect to mysql database 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    database: 'todo_database',
-    user: 'root',
-    password: 'Appdatabase1*'
+    host: process.env.HOST,
+    user: process.env.USER,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD
 });
 
 connection.connect(function(error) {
     if(error) {
         console.log(error);
+    } else {
+        console.log("Connected to database!");
     }
 });
 
@@ -44,7 +51,6 @@ app.post('/login', function(request, response) {
     // Get the information user has entered in login form
     var username = request.body.username;
     var password = request.body.password;
-
 
 });
 
