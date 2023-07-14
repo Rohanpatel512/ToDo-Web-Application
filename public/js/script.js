@@ -30,3 +30,13 @@ function closeForm(formName) {
     // Close the form 
     form.style.display = 'none';
 }  
+
+/**
+ * Closes the error message once user clicks 'x'
+ */
+function closeError() {
+
+    // Get the error container by id 
+    const error = document.getElementById("error-message");
+    error.style.display = 'none';
+}
