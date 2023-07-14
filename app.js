@@ -38,6 +38,10 @@ connection.connect(function(error) {
     }
 });
 
+app.get('/', function(request, response){
+    response.render('index', {error: {message: ''}});
+});
+
 app.post('/signup', function(request, response) {
 
     // Local variables
@@ -81,10 +85,7 @@ app.post('/signup', function(request, response) {
             }
 
         });
-
     }
-
-
 });
 
 app.post('/login', function(request, response) {
@@ -98,17 +99,18 @@ app.post('/login', function(request, response) {
     const queryCommand = getQuery('database/query1.sql', data);
     
     // Execute the query when user clicks login button
-    connection.query(queryCommand, function(error, result){
+    connection.query(queryCommand, function(error, result) {
         // Throw an error if any
         if(error) {
             throw error;
         }
 
-        var firstname = result[0].firstname;
-
         if(Object.keys(result).length != 0) {
+            var firstname = result[0].firstname;
             // User has already created account - Load the todo page.
             response.render('todo', {data : {name: firstname}});
+        } else {
+            response.render('index', {error: {message: 'Invalid username and/or password, or User may have not created account.'}})
         }
     });
 
@@ -125,13 +127,12 @@ function getQuery(filePath, data) {
     let queryPath = path.join(__dirname, filePath);
     let queryTemplate = fs.readFileSync(queryPath, 'utf-8');
     
+    // Store the actual values in the placeholders
     const queryCommand = replacer.render(queryTemplate, data);
 
+    // Return the query 
     return queryCommand;
-
-
 }
-
 
 // Server listens to port 2000
 const server = app.listen(2000);
