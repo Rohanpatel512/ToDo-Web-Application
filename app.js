@@ -6,6 +6,17 @@ const ejs = require('ejs');
 const fs = require('fs');
 const mysql = require('mysql2');
 const replacer = require('mustache');
+const { check, validationResult } = require('express-validator');
+const { response } = require('express');
+
+
+const validations = [
+    check('firstname').isLength({min: 2, max:30}).withMessage('Please enter valid first name.'),
+    check('lastname').isLength({min:2, max:30}).withMessage('Please enter valid last name'),
+    check('username').isLength({min:6}).withMessage('Please enter valid username'),
+    check('password').isStrongPassword()
+    .withMessage("Password needs 1 uppercase, 1 special character, 1 lowercase and 1 number. Minimum length must be 8")
+];
 
 // Create the server with express
 const app = express();
@@ -42,10 +53,7 @@ app.get('/', function(request, response){
     response.render('index', {error: {message: ''}});
 });
 
-app.post('/signup', function(request, response) {
-
-    // Local variables
-    var invalidInfo = false;
+app.post('/signup', validations, function(request, response) {
 
     // Get the information user has entered in signup form
     var data = {
@@ -55,37 +63,30 @@ app.post('/signup', function(request, response) {
         password: request.body.password
     };
 
-    // Check if user has entered information that is empty
-    for(const info in data) {
-        if(data[info] == "") {
-            invalidInfo = !invalidInfo;
-        }
-    }
+    const validationError = validationResult(request);
 
-    if(invalidInfo == false) {
-        // User has entered information in all fields
-        let queryPath = path.join(__dirname, 'database/query2.sql');
-        let queryTemplate = fs.readFileSync(queryPath, 'utf-8');
 
+    if(!validationError.isEmpty()) {
+
+        console.log(validationError);
+
+    } else {
+
+        // Get sql query to be executed
         const queryCommand = getQuery('database/query2.sql', data);
 
-        // Execute the query when user makes account
-        connection.query(queryCommand, function(error, result) {
+        connection.query(queryCommand, function(error, result){
+            if(error) throw error;
 
-            if(error) {
-                throw error;
-            }
-
-            // Checks if any other user does not have the same username
+            // Check if username is unique to the user.
             if(result.length == 0) {
                 const query = getQuery('database/query3.sql', data);
-                connection.query(query, function(error, result) {
-                    if(error) throw error;
-                });
+                insertUser(query, data);
             }
-
         });
+
     }
+
 });
 
 app.post('/login', function(request, response) {
@@ -132,6 +133,21 @@ function getQuery(filePath, data) {
 
     // Return the query 
     return queryCommand;
+}
+
+/**
+ * Inserts new user info into database
+ * @param query for to store in database
+ * @param data the data user entered
+ */
+function insertUser(query, data) {
+
+    connection.query(query, function(result, error){
+        if(error) throw error;
+        var firstname = data.firstname;
+        response.render('todo', {data: {name: firstname}});
+    })
+
 }
 
 // Server listens to port 2000
