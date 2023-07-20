@@ -40,3 +40,21 @@ function closeError() {
     const error = document.getElementById("error-message");
     error.style.display = 'none';
 }
+
+/**
+ * Closes the "username taken" message when user clicks 'x'.
+ */
+function closeUsernameError() {
+    // Get the error container by id 
+    const error = document.getElementById("error-message-2");
+    error.style.display = 'none';
+}
+
+/**
+ * Closes any alert messages for invalid information 
+ */
+function closeAlert() {
+   // Get the alert container by id 
+   const alert = document.getElementById("alert-message");
+   alert.style.display = 'none';
+}
