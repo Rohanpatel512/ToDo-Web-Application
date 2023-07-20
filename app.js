@@ -41,6 +41,7 @@ const connection = mysql.createConnection({
     password: process.env.PASSWORD
 });
 
+// Connect to the database.
 connection.connect(function(error) {
     if(error) {
         console.log(error);
@@ -50,7 +51,7 @@ connection.connect(function(error) {
 });
 
 app.get('/', function(request, response){
-    response.render('index', {error: {message: ''}});
+    response.render('index', {error: {message: ''}, error2: {message: ''}});
 });
 
 app.post('/signup', validations, function(request, response) {
@@ -63,18 +64,22 @@ app.post('/signup', validations, function(request, response) {
         password: request.body.password
     };
 
+    // Get all validation errors 
     const validationError = validationResult(request);
 
 
     if(!validationError.isEmpty()) {
 
-        console.log(validationError);
+        // Send an alert to client for invalid information
+        const alert = validationError.array();
+        response.render('index', {error: {message: ''}, error2: {message: ''}, alert});
 
     } else {
 
         // Get sql query to be executed
         const queryCommand = getQuery('database/query2.sql', data);
 
+        // Run the query to check for existing usernames.
         connection.query(queryCommand, function(error, result){
             if(error) throw error;
 
@@ -82,6 +87,9 @@ app.post('/signup', validations, function(request, response) {
             if(result.length == 0) {
                 const query = getQuery('database/query3.sql', data);
                 insertUser(query, data);
+            } else {
+                // Send an error to client saying that username is already taken.
+                response.render('index', {error: {message: ''}, error2: {message: 'Username is already taken.'}})
             }
         });
 
@@ -111,7 +119,9 @@ app.post('/login', function(request, response) {
             // User has already created account - Load the todo page.
             response.render('todo', {data : {name: firstname}});
         } else {
-            response.render('index', {error: {message: 'Invalid username and/or password, or User may have not created account.'}})
+            // Send an error to client to let user know login information was invalid.
+            var message = 'Invalid username and/or password, or user may have not created account.';
+            response.render('index', {error: {message: message}, error2: {message: ''}})
         }
     });
 
@@ -146,7 +156,7 @@ function insertUser(query, data) {
         if(error) throw error;
         var firstname = data.firstname;
         response.render('todo', {data: {name: firstname}});
-    })
+    });
 
 }
 
