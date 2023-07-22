@@ -50,8 +50,9 @@ connection.connect(function(error) {
     }
 });
 
+
 app.get('/', function(request, response){
-    response.render('index', {error: {message: ''}, error2: {message: ''}});
+    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
 });
 
 app.post('/signup', validations, function(request, response) {
@@ -72,7 +73,7 @@ app.post('/signup', validations, function(request, response) {
 
         // Send an alert to client for invalid information
         const alert = validationError.array();
-        response.render('index', {error: {message: ''}, error2: {message: ''}, alert});
+        response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}, alert});
 
     } else {
 
@@ -81,15 +82,22 @@ app.post('/signup', validations, function(request, response) {
 
         // Run the query to check for existing usernames.
         connection.query(queryCommand, function(error, result){
-            if(error) throw error;
-
+            if(error) {
+                throw error;
+            }
             // Check if username is unique to the user.
             if(result.length == 0) {
+                // Load up home page letting user know their account has successfully been created.
+                var successMessage = 'Succcessfully created account. You may login now!'
+                response.render('index', {error: {message: ''}, error2: {message: ''}, 
+                success: {message: successMessage}});
+                // Insert the users data into the database.
                 const query = getQuery('database/query3.sql', data);
-                insertUser(query, data);
+                insertUser(query);
             } else {
                 // Send an error to client saying that username is already taken.
-                response.render('index', {error: {message: ''}, error2: {message: 'Username is already taken.'}})
+                response.render('index', {error: {message: ''}, error2: {message: 'Username is already taken.'},
+                success: {message: ''}});
             }
         });
 
@@ -121,11 +129,12 @@ app.post('/login', function(request, response) {
         } else {
             // Send an error to client to let user know login information was invalid.
             var message = 'Invalid username and/or password, or user may have not created account.';
-            response.render('index', {error: {message: message}, error2: {message: ''}})
+            response.render('index', {error: {message: message}, error2: {message: ''}, success: {message: ''}});
         }
     });
 
 });
+
 
 /**
  * Gets the query to be exectued from file
@@ -148,14 +157,13 @@ function getQuery(filePath, data) {
 /**
  * Inserts new user info into database
  * @param query for to store in database
- * @param data the data user entered
  */
-function insertUser(query, data) {
+function insertUser(query) {
 
     connection.query(query, function(result, error){
-        if(error) throw error;
-        var firstname = data.firstname;
-        response.render('todo', {data: {name: firstname}});
+        if(error) {
+            throw error;
+        }
     });
 
 }
