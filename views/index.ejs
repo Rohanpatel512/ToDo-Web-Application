@@ -38,6 +38,14 @@
                     </div>
                 <%}%>
 
+                <%if(success.message != '') {%>
+                    <div id="success-message" style="text-align: center; background-color:#109e4d; width:80%; padding:30px;
+                    border-radius: 20px; color: white; font-weight:bold; margin-left: 6%">
+                        <span style="float: right; margin-top: -3%; font-size: 25px">&times</span>
+                        <p><%=success.message%></p>
+                    </div>
+                <%}%>
+
                 <div class="title-container">
                     <h3 id="title">TASK MANAGER</h3>
                 </div>
