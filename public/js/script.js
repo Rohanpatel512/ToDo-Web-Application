@@ -58,3 +58,11 @@ function closeAlert() {
    const alert = document.getElementById("alert-message");
    alert.style.display = 'none';
 }
+
+/**
+ * Closes success message 
+ */
+function closeSuccessMessage() {
+  const success = document.getElementById("success-message");
+  success.style.display = 'none';
+}
