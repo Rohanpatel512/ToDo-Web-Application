@@ -50,12 +50,11 @@ connection.connect(function(error) {
     }
 });
 
-
 app.get('/', function(request, response){
     response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
 });
 
-app.post('/signup', validations, function(request, response) {
+app.post('/', validations, function(request, response) {
 
     // Get the information user has entered in signup form
     var data = {
@@ -160,7 +159,7 @@ function getQuery(filePath, data) {
  */
 function insertUser(query) {
 
-    connection.query(query, function(result, error){
+    connection.query(query, function(error, result){
         if(error) {
             throw error;
         }
@@ -172,4 +171,4 @@ function insertUser(query) {
 const server = app.listen(2000);
 
 // Run all static files in the public directory
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
