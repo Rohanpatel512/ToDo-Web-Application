@@ -85,9 +85,6 @@ function addTodo() {
     // Create a new div element to be part of the list
     const listElement = document.createElement('div');
 
-    // Adds the users todo into a list
-    listAdd(todo, listCount);
-
     // Increase list count value by one, and assign the list element a list count for class name.
     listCount += 1;
     nameID += listCount;
@@ -125,8 +122,6 @@ function deleteTodo(event) {
     // Remove the list element from container
     listContainer.removeChild(listElement);
 
-    listDelete(parentID, listContainer.childNodes);
-
 }
 
 /**
@@ -146,9 +141,6 @@ function updateTodo() {
     // Update the list element
     listElement.innerText = updatedTodo;
 
-    // Update the user list 
-    listUpdate(updatedTodo, elementID);
-
     addButtons(listElement);
 
 }
@@ -163,4 +155,18 @@ function clearTodo() {
     listContainer.replaceChildren();
 }
 
+/**
+ * Converts a node list to an array
+ * @param nodeList - The node list of todo's
+ */
+ function toArray(nodeList) {
 
+    let userList = [];
+
+    for(var i = 0; i < nodeList.length; i++) {
+        userList.push(nodeList[i].innerText);
+    }
+
+    return userList;
+
+}
