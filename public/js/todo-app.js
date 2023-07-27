@@ -122,10 +122,10 @@ function deleteTodo(event) {
     // Get the container that holds the list element
     const listContainer = listElement.parentElement;
 
-    listDelete(parentID);
-
     // Remove the list element from container
     listContainer.removeChild(listElement);
+
+    listDelete(parentID, listContainer.childNodes);
 
 }
 
