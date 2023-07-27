@@ -24,11 +24,27 @@ function listUpdate(updatedTodo, index) {
 /**
  * Removes users todo from the list
  * @param index - The index of todo to be deleted
+ * @param nodeList - List of child node elements
  */
-function listDelete(index) {
+function listDelete(index, nodeList) {
     index = parseInt(index);
     userList.splice(index -  1, index - 1);
-    console.log(userList);
+    
+    for(var i = 0; i < nodeList.length; i++) {
+        userList[i] = nodeList[i].innerText;
+        
+        // Convert string ID to integer
+        var id = parseInt(userList[i].id);
+
+        // Decrement value by one
+        id -= 1;
+
+        // Convert integer back to string
+        var temp = "";
+        temp += id;
+        nodeList[i].id = temp;
+
+    }
 }
 
 /**
