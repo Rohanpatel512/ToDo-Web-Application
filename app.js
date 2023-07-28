@@ -143,7 +143,6 @@ app.post('/sendData', function(request, response) {
     // Fetch the data and convert to JSON string
     const jsonData = JSON.stringify(request.body);
 
-    
 
 });
 
