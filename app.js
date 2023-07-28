@@ -8,6 +8,7 @@ const mysql = require('mysql2');
 const replacer = require('mustache');
 const { check, validationResult } = require('express-validator');
 const { response } = require('express');
+let loggedInUsername = "";
 
 
 const validations = [
@@ -49,6 +50,7 @@ connection.connect(function(error) {
         console.log("Connected to database!");
     }
 });
+
 
 app.get('/', function(request, response){
     response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
@@ -110,6 +112,8 @@ app.post('/login', function(request, response) {
     var username = request.body.username;
     var password = request.body.password;
 
+    loggedInUsername = username;
+
     var data = {username: username, password: password};
 
     const queryCommand = getQuery('database/query1.sql', data);
@@ -131,6 +135,15 @@ app.post('/login', function(request, response) {
             response.render('index', {error: {message: message}, error2: {message: ''}, success: {message: ''}});
         }
     });
+
+});
+
+app.post('/sendData', function(request, response) {
+    
+    // Fetch the data and convert to JSON string
+    const jsonData = JSON.stringify(request.body);
+
+    
 
 });
 
