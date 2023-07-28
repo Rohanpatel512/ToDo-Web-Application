@@ -1,9 +1,3 @@
-// Local variables
-let signup_btn = document.getElementById("signup-btn");
-
-// Adds event listeners 
-signup_btn.addEventListener('click', checkValid);
-
 /**
  * Displays either login form or sign up form depending on which was clicked
  * @param id of form
