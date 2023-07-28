@@ -166,6 +166,25 @@ function logoutUser() {
    const todoArray = toArray(listContainer.childNodes);
    const json = JSON.stringify(todoArray); 
 
+   // URL of node.js server
+   const url = "http://localhost:2000/sendData";
+   // Create a new http request
+   const httpRequest = new XMLHttpRequest();
+   
+   // Request configuration
+   httpRequest.open("POST", url);
+   httpRequest.setRequestHeader("Content-type", "application/json");
+
+   httpRequest.onload = function () {
+    if (httpRequest.status === 200) {
+      const response = JSON.parse(httpRequest.responseText);
+    } 
+  };
+
+   // Send the data 
+   httpRequest.send(json);
+
+
 } 
 
 /**
