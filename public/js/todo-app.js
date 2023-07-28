@@ -4,6 +4,7 @@ const addButton = document.querySelector('#add-btn');
 const clearButton = document.querySelector('#clear-btn');
 const update = document.querySelector('#update');
 const cancel = document.querySelector("#cancel");
+const logout = document.querySelector("#logout");
 
 // Variables 
 let listCount = 0;
@@ -14,7 +15,7 @@ addButton.addEventListener('click', addTodo);
 clearButton.addEventListener('click', clearTodo);
 update.addEventListener('click', updateTodo);
 cancel.addEventListener('click', hideUpdateModal);
-
+logout.addEventListener('click', logoutUser);
 
 /**
  * Enter key is pressed and user has entered todo, add the todo to the list
@@ -156,6 +157,18 @@ function clearTodo() {
 }
 
 /**
+ * Logs user out from their account 
+ * Saves users todo's into an array 
+ */
+function logoutUser() {
+ 
+   const listContainer = document.querySelector('.todo-list-container'); 
+   const todoArray = toArray(listContainer.childNodes);
+   const json = JSON.stringify(todoArray); 
+
+} 
+
+/**
  * Converts a node list to an array
  * @param nodeList - The node list of todo's
  */
@@ -168,5 +181,6 @@ function clearTodo() {
     }
 
     return userList;
-
 }
+
+
