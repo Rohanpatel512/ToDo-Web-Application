@@ -177,12 +177,13 @@ function logoutUser() {
 
    httpRequest.onload = function () {
     if (httpRequest.status === 200) {
-      const response = JSON.parse(httpRequest.responseText);
+      const response = httpRequest.responseText;
     } 
   };
 
    // Send the data 
    httpRequest.send(json);
+   //console.log("Finished logoutUser function!");
 
 
 } 
