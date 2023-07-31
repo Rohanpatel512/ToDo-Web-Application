@@ -156,9 +156,9 @@ app.post('/sendData', function(request, response) {
         }
     });
 
-    // Return the user back to home page.
     response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
-
+    // Return the user back to home page.
+    console.log("Rendering finished!");
 });
 
 
