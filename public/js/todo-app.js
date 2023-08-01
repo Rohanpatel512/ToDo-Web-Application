@@ -163,7 +163,7 @@ function clearTodo() {
 function logoutUser() {
  
    const listContainer = document.querySelector('.todo-list-container'); 
-   const todoArray = toArray(listContainer.childNodes);
+   const todoArray = Array.from(listContainer.childNodes);
    const json = JSON.stringify(todoArray); 
 
    // URL of node.js server
@@ -175,17 +175,21 @@ function logoutUser() {
    httpRequest.open("POST", url);
    httpRequest.setRequestHeader("Content-type", "application/json");
 
-   httpRequest.onload = function () {
-    if (httpRequest.status === 200) {
-      const response = httpRequest.responseText;
+
+   httpRequest.onreadystatechange = function () {
+    if (httpRequest.readyState === 4) {
+        console.log('Response:', httpRequest.responseText);
+        if(httpRequest.status === 200) {
+            const response = JSON.parse(httpRequest.responseText);
+            document.body.innerHTML = response.template;
+        } else {
+            console.error('Error: ' + httpRequest.status);
+        }
     } 
   };
 
    // Send the data 
    httpRequest.send(json);
-   //console.log("Finished logoutUser function!");
-
-
 } 
 
 /**
