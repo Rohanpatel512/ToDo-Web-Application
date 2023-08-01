@@ -26,8 +26,9 @@ const app = express();
 require('dotenv').config();
 
 // Use the body parser
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // Set the view engine to ejs
 app.set('views', path.join(__dirname, 'views'));
@@ -139,12 +140,9 @@ app.post('/login', function(request, response) {
 });
 
 app.post('/sendData', function(request, response) {
-    
-    // Fetch the data and convert to JSON string
-    const jsonData = JSON.stringify(request.body);
 
     // Store all data that are going to be used as parameters to sql query in object
-    var data = {todo: jsonData, username: loggedInUsername};
+    var data = {todo: request.body, username: loggedInUsername};
 
     // Get the query to be executed
     const queryCommand = getQuery('database/query4.sql', data);
@@ -157,8 +155,6 @@ app.post('/sendData', function(request, response) {
     });
 
     response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
-    // Return the user back to home page.
-    console.log("Rendering finished!");
 });
 
 
