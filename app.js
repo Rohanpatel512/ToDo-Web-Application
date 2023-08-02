@@ -141,18 +141,23 @@ app.post('/login', function(request, response) {
 
 app.post('/sendData', function(request, response) {
 
+    const jsonData = JSON.stringify(request.body)
+
     // Store all data that are going to be used as parameters to sql query in object
-    var data = {todo: request.body, username: loggedInUsername};
+    var data = {todo: jsonData, username: loggedInUsername};
 
     // Get the query to be executed
     const queryCommand = getQuery('database/query4.sql', data);
 
+    console.log(queryCommand);
+
     // Execute the query 
+    /*
     connection.query(queryCommand, function(error, result) {
         if(error) {
             throw error;
         }
-    });
+    });*/
 
     response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
 });
