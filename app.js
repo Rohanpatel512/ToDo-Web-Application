@@ -8,6 +8,7 @@ const mysql = require('mysql2');
 const replacer = require('mustache');
 const { check, validationResult } = require('express-validator');
 const { response } = require('express');
+const axios = require('axios');
 let loggedInUsername = "";
 
 
@@ -54,6 +55,7 @@ connection.connect(function(error) {
 
 
 app.get('/', function(request, response){
+    console.log("Hey I recieved the get request!")
     response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
 });
 
@@ -149,8 +151,6 @@ app.post('/sendData', function(request, response) {
     // Get the query to be executed
     const queryCommand = getQuery('database/query4.sql', data);
 
-    console.log(queryCommand);
-
     // Execute the query 
     /*
     connection.query(queryCommand, function(error, result) {
@@ -159,8 +159,19 @@ app.post('/sendData', function(request, response) {
         }
     });*/
 
+    axios.get('http://localhost:2000//')
+    .then(function(response) {
+      res.send('EJS file rendered successfully.');
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+      res.status(500).send('Error rendering EJS file.');
+    });
+
     response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
+    
 });
+    
 
 
 /**
