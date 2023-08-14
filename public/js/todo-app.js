@@ -175,11 +175,12 @@ function logoutUser() {
    httpRequest.open("POST", url);
    httpRequest.setRequestHeader("Content-type", "application/json");
 
+   /*
    httpRequest.onreadystatechange = function () {
     if (httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200) {
-       console.log(httpRequest.responseText);
+       httpRequest.responseText;
     } 
-   };
+   };*/
 
    // Send the data 
    httpRequest.send(json);
