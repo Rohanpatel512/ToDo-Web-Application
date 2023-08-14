@@ -53,10 +53,14 @@ connection.connect(function(error) {
     }
 });
 
+function renderIndexPage(response) {
+    console.log("Response function called!");
+    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
+}
 
 app.get('/', function(request, response){
     console.log("Hey I recieved the get request!")
-    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
+    renderIndexPage(response);
 });
 
 app.post('/', validations, function(request, response) {
@@ -158,17 +162,6 @@ app.post('/sendData', function(request, response) {
             throw error;
         }
     });*/
-
-    axios.get('http://localhost:2000//')
-    .then(function(response) {
-      res.send('EJS file rendered successfully.');
-    })
-    .catch(function(error) {
-      console.error('Error:', error);
-      res.status(500).send('Error rendering EJS file.');
-    });
-
-    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
     
 });
     
