@@ -8,7 +8,7 @@ const mysql = require('mysql2');
 const replacer = require('mustache');
 const { check, validationResult } = require('express-validator');
 const { response } = require('express');
-const axios = require('axios');
+const session = require('express-session');
 let loggedInUsername = "";
 
 
@@ -30,11 +30,12 @@ require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 // Set the view engine to ejs
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Use a session to keep track of templates being rendered 
+app.use(session({secret: process.env.SESSION, resave: true, saveUninitialized: true}));
 
 // Connect to mysql database 
 const connection = mysql.createConnection({
@@ -53,14 +54,10 @@ connection.connect(function(error) {
     }
 });
 
-function renderIndexPage(response) {
-    console.log("Response function called!");
-    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
-}
-
 app.get('/', function(request, response){
-    console.log("Hey I recieved the get request!")
-    renderIndexPage(response);
+    request.session.currentTemplate = 'index';
+    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
+    console.log("Page rendered!");
 });
 
 app.post('/', validations, function(request, response) {
@@ -135,6 +132,7 @@ app.post('/login', function(request, response) {
         if(Object.keys(result).length != 0) {
             var firstname = result[0].firstname;
             // User has already created account - Load the todo page.
+            request.session.currentTemplate = 'todo';
             response.render('todo', {data : {name: firstname}});
         } else {
             // Send an error to client to let user know login information was invalid.
@@ -162,6 +160,8 @@ app.post('/sendData', function(request, response) {
             throw error;
         }
     });*/
+
+    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}})
     
 });
     
