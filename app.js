@@ -54,10 +54,12 @@ connection.connect(function(error) {
     }
 });
 
-app.get('/', function(request, response){
-    request.session.currentTemplate = 'index';
-    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
-    console.log("Page rendered!");
+app.get('/', function(request, response) {    
+    
+    if(request.session.currentTemplate === undefined) {
+        response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}});
+    }
+    
 });
 
 app.post('/', validations, function(request, response) {
@@ -133,7 +135,7 @@ app.post('/login', function(request, response) {
             var firstname = result[0].firstname;
             // User has already created account - Load the todo page.
             request.session.currentTemplate = 'todo';
-            response.render('todo', {data : {name: firstname}});
+            response.render('todo', {data: {name: firstname}})
         } else {
             // Send an error to client to let user know login information was invalid.
             var message = 'Invalid username and/or password, or user may have not created account.';
@@ -161,8 +163,9 @@ app.post('/sendData', function(request, response) {
         }
     });*/
 
-    response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}})
-    
+    request.session.currentTemplate = undefined;
+    response.redirect('/');
+
 });
     
 
