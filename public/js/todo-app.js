@@ -10,13 +10,21 @@ const logout = document.querySelector("#logout");
 let listCount = 0;
 let selected = null;
 
-// Event listener 
-addButton.addEventListener('click', addTodo);
-clearButton.addEventListener('click', clearTodo);
-update.addEventListener('click', updateTodo);
-cancel.addEventListener('click', hideUpdateModal);
-logout.addEventListener('click', logoutUser);
+window.addEventListener('load', addEvents);
 
+// Event listener
+function addEvents() { 
+
+    console.log("Adding events!");
+    
+    /*
+    addButton.addEventListener('click', addTodo);
+    clearButton.addEventListener('click', clearTodo);
+    update.addEventListener('click', updateTodo);
+    cancel.addEventListener('click', hideUpdateModal);
+    logout.addEventListener('click', logoutUser);
+    */
+}
 /**
  * Enter key is pressed and user has entered todo, add the todo to the list
  * @param event - The key event being emitted
@@ -178,7 +186,7 @@ function logoutUser() {
 
    httpRequest.onload = function() {
     if(httpRequest.status === 200) {
-        document.body.innerHTML = httpRequest.responseText;
+       document.body.innerHTML = httpRequest.responseText;
     }
    }
 
