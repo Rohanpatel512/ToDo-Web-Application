@@ -164,7 +164,7 @@ app.post('/sendData', function(request, response) {
     });*/
 
     request.session.currentTemplate = undefined;
-    response.redirect('/');
+    response.send("Sent");
 
 });
     
