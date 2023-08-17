@@ -1,3 +1,22 @@
+// Constants
+const formButton = document.querySelectorAll('.btn');
+
+/**
+ * Add an click event listener to each button on the home page.
+ */  
+formButton.forEach(function(button) {
+    button.addEventListener('click', checkButton);
+});
+
+
+/**
+ * Check whether login or signup button was clicked and displays that form.
+ */
+function checkButton(event) {
+    let formID = event.target.formTarget;
+    showForm(formID);
+}
+
 /**
  * Displays either login form or sign up form depending on which was clicked
  * @param id of form
