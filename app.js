@@ -62,6 +62,23 @@ app.get('/', function(request, response) {
     
 });
 
+app.get('/getData', function(request, response) {
+
+    // Set the data to be the username of user
+    data = loggedInUsername;
+
+    // Get query to retrieve data from database
+    const queryCommand = getQuery('database/query5.sql', data);
+
+    connection.query(queryCommand, function(error, result) {
+        // Display an error if any
+        if(error) throw error;
+
+        console.log("Data retrieved: " + result);
+    });
+
+});
+
 app.post('/', validations, function(request, response) {
 
     // Get the information user has entered in signup form
@@ -156,12 +173,11 @@ app.post('/sendData', function(request, response) {
     const queryCommand = getQuery('database/query4.sql', data);
 
     // Execute the query 
-    /*
     connection.query(queryCommand, function(error, result) {
         if(error) {
             throw error;
         }
-    });*/
+    });
 
     request.session.currentTemplate = undefined;
     response.send("Sent");
