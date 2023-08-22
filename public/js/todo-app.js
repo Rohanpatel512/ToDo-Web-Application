@@ -17,6 +17,10 @@ update.addEventListener('click', updateTodo);
 cancel.addEventListener('click', hideUpdateModal);
 logout.addEventListener('click', logoutUser);
 
+window.onload = function() {
+    getUserData();
+}
+
 /**
  * Enter key is pressed and user has entered todo, add the todo to the list
  * @param event - The key event being emitted
@@ -189,6 +193,31 @@ function logoutUser() {
    // Send the data 
    httpRequest.send(json);
 } 
+
+/**
+ * Gets user todo data from server when they login
+ */
+function getUserData() {
+
+    // URL of node.js server
+    const url = "http://localhost:2000/getData";
+
+    // Create a new http request
+    const httpRequest = new XMLHttpRequest();
+
+    // Request configuration
+    httpRequest.open("GET", url);
+    httpRequest.setRequestHeader("Content-type", "application/json");
+
+    httpRequest.onreadystatechange = function() {
+        if(httpRequest.readyState === 4 && httpRequest.status === 200) {
+            const serverData = httpRequest.responseText;
+        }
+    }
+
+    httpRequest.send();
+
+}
 
 /**
  * Converts a node list to an array
