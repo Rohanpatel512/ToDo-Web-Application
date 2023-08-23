@@ -9,6 +9,7 @@ const replacer = require('mustache');
 const { check, validationResult } = require('express-validator');
 const { response } = require('express');
 const session = require('express-session');
+const { type } = require('os');
 let loggedInUsername = "";
 
 
@@ -65,7 +66,7 @@ app.get('/', function(request, response) {
 app.get('/getData', function(request, response) {
 
     // Set the data to be the username of user
-    data = loggedInUsername;
+    var data = {username: loggedInUsername};
 
     // Get query to retrieve data from database
     const queryCommand = getQuery('database/query5.sql', data);
@@ -74,9 +75,9 @@ app.get('/getData', function(request, response) {
         // Display an error if any
         if(error) throw error;
 
-        console.log("Data retrieved: " + result);
+        // Send the retrieved data to client
+        response.end(result[0]["list"]);
     });
-
 });
 
 app.post('/', validations, function(request, response) {
