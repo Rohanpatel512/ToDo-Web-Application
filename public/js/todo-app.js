@@ -28,7 +28,7 @@ window.onload = function() {
 window.addEventListener('keyup', function(event) {
     const todoValue = document.querySelector('#todo-input').value;
     if(event.key == 'Enter' && todoValue.length > 0) {
-        addTodo();
+        addTodo('');
     }
 });
 
@@ -80,12 +80,17 @@ function addButtons(listElement) {
 /**
  * Creates a todo container and adds it to the list of todo's
  */
-function addTodo() {
+function addTodo(value) {
 
     var nameID = "";
+    let todo;
 
     // Get the todo user entered
-    const todo = document.querySelector('#todo-input').value;
+    if(value == '') {
+        todo = document.querySelector('#todo-input').value;
+    } else {
+        todo = value;
+    }
 
     // Create a new div element to be part of the list
     const listElement = document.createElement('div');
@@ -211,8 +216,18 @@ function getUserData() {
 
     httpRequest.onreadystatechange = function() {
         if(httpRequest.readyState === 4 && httpRequest.status === 200) {
+            
+            // Get the data from the server
             const serverData = httpRequest.responseText;
-        }
+
+            if(serverData != [] || serverData != null) {
+                // Remove all the HTML encoded '&quot;' entities
+                const string_data = serverData.replace(/&quot;/g, '"');
+
+                // Convert string to array object
+                const data_list = JSON.parse(string_data);
+            }
+        }   
     }
 
     httpRequest.send();
