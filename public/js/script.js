@@ -45,8 +45,17 @@ function closeForm(formName) {
 }  
 
 /**
- * Closes the error message once user clicks 'x'
+ * Closes an error or success messages.
+ * @param id of message to be closed 
  */
+function closeMessage(id) {
+    console.log("Closing: " + id);
+    const message = document.getElementById(id);
+    message.style.display = 'none';
+
+}
+
+/**
 function closeError() {
 
     // Get the error container by id 
@@ -54,28 +63,21 @@ function closeError() {
     error.style.display = 'none';
 }
 
-/**
- * Closes the "username taken" message when user clicks 'x'.
- */
+
 function closeUsernameError() {
     // Get the error container by id 
     const error = document.getElementById("error-message-2");
     error.style.display = 'none';
 }
 
-/**
- * Closes any alert messages for invalid information 
- */
 function closeAlert() {
    // Get the alert container by id 
    const alert = document.getElementById("alert-message");
    alert.style.display = 'none';
 }
 
-/**
- * Closes success message 
- */
 function closeSuccessMessage() {
   const success = document.getElementById("success-message");
   success.style.display = 'none';
 }
+*/
