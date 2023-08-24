@@ -226,6 +226,11 @@ function getUserData() {
 
                 // Convert string to array object
                 const data_list = JSON.parse(string_data);
+
+                // Display the todo's 
+                for(var i = 0; i < data_list.length; i++) {
+                    addTodo(data_list[i]);
+                }
             }
         }   
     }
