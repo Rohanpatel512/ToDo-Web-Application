@@ -98,6 +98,7 @@ app.post('/', validations, function(request, response) {
 
         // Send an alert to client for invalid information
         const alert = validationError.array();
+        console.log(alert);
         response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}, alert});
 
     } else {
