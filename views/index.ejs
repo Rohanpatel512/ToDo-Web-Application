@@ -16,7 +16,7 @@
                     <% alert.forEach(function(error) {%>
                         <div id="alert-message" style="text-align: center; background-color: #fce4e4; width: 80%; padding: 30px;
                         border-radius: 20px; color: #cc0033; font-weight: bold; margin-left: 6%;">
-                            <span style="float:right; margin-top: -3%; font-size:25px;" onclick="closeMessage('alert-message')">&times;</span>
+                            <span style="float:right; margin-top: -3%; font-size:25px;" onclick="closeAlert('alert-message')">&times</span>
                             <p><%=error.msg%></p>
                         </div>
                     <%})%>
