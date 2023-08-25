@@ -55,6 +55,13 @@ function closeMessage(id) {
 
 }
 
+function closeAlert(id) {
+    // Get the alert container by id 
+    const alert = document.getElementById(id);
+
+    alert.style.display = 'none';
+ }
+
 /**
 function closeError() {
 
@@ -68,12 +75,6 @@ function closeUsernameError() {
     // Get the error container by id 
     const error = document.getElementById("error-message-2");
     error.style.display = 'none';
-}
-
-function closeAlert() {
-   // Get the alert container by id 
-   const alert = document.getElementById("alert-message");
-   alert.style.display = 'none';
 }
 
 function closeSuccessMessage() {
