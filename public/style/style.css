@@ -142,3 +142,7 @@ header {
     color: white;
     text-align: center;
 }
+
+.close-btn {
+    cursor: pointer;
+}
