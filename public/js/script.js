@@ -8,7 +8,6 @@ formButton.forEach(function(button) {
     button.addEventListener('click', checkButton);
 });
 
-
 /**
  * Check whether login or signup button was clicked and displays that form.
  */
@@ -55,12 +54,15 @@ function closeMessage(id) {
 
 }
 
+/**
+ * Closes any alerts when user is signing up
+ * @param id of the alert message being closed 
+ */
 function closeAlert(id) {
-    // Get the alert container by id 
-    const alert = document.getElementById(id);
-
+    const alert = document.getElementById(id).parentElement;
     alert.style.display = 'none';
- }
+}
+
 
 /**
 function closeError() {
