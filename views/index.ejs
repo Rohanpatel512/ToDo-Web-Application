@@ -27,7 +27,7 @@
                 <%if(error2.message != '') {%>
                     <div id="error-message-2" style="text-align: center; background-color: #fce4e4; width: 80%; padding: 30px;
                     border-radius: 20px; color: #cc0033; font-weight: bold; margin-left: 6%;">
-                        <span style="float:right; margin-top:-3%; font-size:25px;" onclick="closeMessage('error-message-2')">&times;</span>
+                        <span class="close-btn" style="float:right; margin-top:-3%; font-size:25px;" onclick="closeMessage('error-message-2')">&times;</span>
                         <p><%=error2.message%></p>
                     </div>
                 <%}%>
@@ -35,7 +35,7 @@
                 <%if(error.message != '') {%>
                     <div id="error-message" style="text-align: center; background-color:#fce4e4; width:80%; padding:30px;
                     border-radius: 20px; color: #cc0033; font-weight:bold; margin-left: 6%">
-                        <span style="float:right; margin-top:-3%; font-size:25px;" onclick="closeMessage('error-message')">&times;</span>
+                        <span class="close-btn" style="float:right; margin-top:-3%; font-size:25px;" onclick="closeMessage('error-message')">&times;</span>
                         <p><%=error.message%><p>
                     </div>
                 <%}%>
@@ -43,7 +43,7 @@
                 <%if(success.message != '') {%>
                     <div id="success-message" style="text-align: center; background-color:#109e4d; width:80%; padding:30px;
                     border-radius: 20px; color: white; font-weight:bold; margin-left: 6%">
-                        <span style="float: right; margin-top: -3%; font-size: 25px" onclick="closeMessage('success-message')">&times;</span>
+                        <span class="close-btn" style="float: right; margin-top: -3%; font-size: 25px" onclick="closeMessage('success-message')">&times;</span>
                         <p><%=success.message%></p>
                     </div>
                 <%}%>
