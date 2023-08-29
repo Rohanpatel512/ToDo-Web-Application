@@ -25,7 +25,7 @@ header {
 .main-container {
     /*background-color: pink;*/
     width: 760px;
-    height: 500px;
+    height: 100%;
     margin: auto;
     padding-top: 10%;
     padding-left: 10px;
@@ -49,13 +49,13 @@ header {
 }
 
 .btn-container {
-    /*background-color: pink;*/
     width: 400px;
     padding: 30px;
     margin: auto;
 }
 
 .btn-container button {
+    cursor: pointer;
     margin: auto;
     width: 150px;
     height: 70px;
@@ -134,6 +134,7 @@ header {
 }
 
 .form-btn {
+    cursor: pointer;
     width: 100px;
     height: 50px;
     background-color: transparent;
@@ -145,4 +146,24 @@ header {
 
 .close-btn {
     cursor: pointer;
+}
+
+/* Example of a media query for smaller screens */
+@media screen and (max-width: 768px) {
+    /* CSS rules for smaller screens */
+    header {height: 100vh;}
+    .title-container {width: 50%;}
+    #description {width: 50%;}
+    .form-container {width: 100%;}
+    .btn-container {width: 30%; margin: auto;}
+}
+  
+/* Example of a media query for larger screens */
+@media screen and (min-width: 769px) {
+    /* CSS rules for larger screens */
+    header {height: 100vh;}
+    .title-container {width: 100%;}
+    #description {width: 100%;}
+    .form-container {width: 100%;}
+    .btn-container {width: 50%;}
 }
