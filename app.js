@@ -69,7 +69,7 @@ app.get('/getData', function(request, response) {
     var data = {username: loggedInUsername};
 
     // Get query to retrieve data from database
-    const queryCommand = getQuery('database/query5.sql', data);
+    const queryCommand = getQuery('database/get_user_data.sql', data);
 
     connection.query(queryCommand, function(error, result) {
         // Display an error if any
@@ -98,13 +98,12 @@ app.post('/', validations, function(request, response) {
 
         // Send an alert to client for invalid information
         const alert = validationError.array();
-        console.log(alert);
         response.render('index', {error: {message: ''}, error2: {message: ''}, success: {message: ''}, alert});
 
     } else {
 
         // Get sql query to be executed
-        const queryCommand = getQuery('database/query2.sql', data);
+        const queryCommand = getQuery('database/username_exist.sql', data);
 
         // Run the query to check for existing usernames.
         connection.query(queryCommand, function(error, result){
@@ -118,7 +117,7 @@ app.post('/', validations, function(request, response) {
                 response.render('index', {error: {message: ''}, error2: {message: ''}, 
                 success: {message: successMessage}});
                 // Insert the users data into the database.
-                const query = getQuery('database/query3.sql', data);
+                const query = getQuery('database/insert_user.sql', data);
                 insertUser(query);
             } else {
                 // Send an error to client saying that username is already taken.
@@ -141,7 +140,7 @@ app.post('/login', function(request, response) {
 
     var data = {username: username, password: password};
 
-    const queryCommand = getQuery('database/query1.sql', data);
+    const queryCommand = getQuery('database/find_user.sql', data);
     
     // Execute the query when user clicks login button
     connection.query(queryCommand, function(error, result) {
@@ -172,7 +171,7 @@ app.post('/sendData', function(request, response) {
     var data = {todo: jsonData, username: loggedInUsername};
 
     // Get the query to be executed
-    const queryCommand = getQuery('database/query4.sql', data);
+    const queryCommand = getQuery('database/save_todo.sql', data);
 
     // Execute the query 
     connection.query(queryCommand, function(error, result) {
