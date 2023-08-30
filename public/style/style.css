@@ -149,21 +149,16 @@ header {
 }
 
 /* Example of a media query for smaller screens */
-@media screen and (max-width: 768px) {
-    /* CSS rules for smaller screens */
+@media (max-width: 768px) {
+    /* CSS rules for screens smaller than 768px but greater than 402px */
     header {height: 100vh;}
-    .title-container {width: 50%;}
-    #description {width: 50%;}
-    .form-container {width: 100%;}
-    .btn-container {width: 30%; margin: auto;}
+    .main-container {max-width: 100%;}
+    #description {max-width: 100%; font-size: 12px;}
+    .btn-container {max-width: 100%;}
 }
-  
-/* Example of a media query for larger screens */
-@media screen and (min-width: 769px) {
-    /* CSS rules for larger screens */
-    header {height: 100vh;}
-    .title-container {width: 100%;}
-    #description {width: 100%;}
-    .form-container {width: 100%;}
-    .btn-container {width: 50%;}
+
+@media (max-width: 402px) {
+    /* CSS rules for screens smaller than 402 pixels */
+    header {overflow-x: scroll;}
+    .title-container {font-size: 30px;}
 }
