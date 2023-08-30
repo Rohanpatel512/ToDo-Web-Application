@@ -11,7 +11,6 @@ let listCount = 0;
 let selected = null;
 
 // Event listener 
-addButton.addEventListener('click', addTodo);
 clearButton.addEventListener('click', clearTodo);
 update.addEventListener('click', updateTodo);
 cancel.addEventListener('click', hideUpdateModal);
@@ -20,6 +19,17 @@ logout.addEventListener('click', logoutUser);
 window.onload = function() {
     getUserData();
 }
+
+/**
+ * Add button is clicked and user has entered todo, add the todo to list.
+ * 
+ */
+addButton.addEventListener('click', function() {
+    const todoValue = document.querySelector("#todo-input").value;
+    if(todoValue.length > 0) {
+        addTodo('');
+    }
+});
 
 /**
  * Enter key is pressed and user has entered todo, add the todo to the list
