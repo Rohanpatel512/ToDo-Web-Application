@@ -48,7 +48,6 @@ function closeForm(formName) {
  * @param id of message to be closed 
  */
 function closeMessage(id) {
-    console.log("Closing: " + id);
     const message = document.getElementById(id);
     message.style.display = 'none';
 
