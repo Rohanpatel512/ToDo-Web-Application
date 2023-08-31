@@ -161,6 +161,12 @@ function updateTodo() {
     // Update the list element
     listElement.innerText = updatedTodo;
 
+    // Remove what user wrote from input box
+    document.querySelector('#update-input').value = '';
+
+    // Stop displaying the update modal 
+    document.querySelector('.update-modal').style.display = 'none';
+
     addButtons(listElement);
 
 }
