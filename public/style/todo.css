@@ -14,6 +14,7 @@ header {
     height: 100vh;
 }
 
+
 .todo-container {
     width: 600px;
     height: 500px;
@@ -106,8 +107,8 @@ header {
 }
 
 /**
-* Start of designing of update modal
-*/
+ * Start of designing of update modal
+ */
 .update-modal {
     width: 100%;
     height: 100%;
@@ -167,40 +168,42 @@ header {
     color: white;
 }
 /**
-* End of designing of update modal 
-*/
+ * End of designing of update modal 
+ */
 
 /**
-* Start of designing of clear button container
-*/
-
+ * Start of designing of clear button container
+ */
 .clear-btn-container {
     width: 100%;
-    padding: 50px;
+    padding: 10px; /* Add some padding to the .clear-btn-container */
     position: absolute;
-    bottom: 5px;
+    bottom: 5%;
 }
 
 .btn-wrapper {
-    width: 210px;
-    margin-left: 200px;
-    padding-left: 165px;
+    width: 600px;
+    margin: auto;
 }
 
 .clear-btn-container button {
     width: 100px;
     height: 50px;
     border: none;
-    border-radius: 5px;
     color: white;
+    border: 0.5px solid white;
+    font-weight: bold;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
-    background-color: orange;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    margin: auto;
 }
 
 
 /**
-* End of designing of clear button container 
-*/
+ * End of designing of clear button container 
+ */
 
 
 /** 
@@ -226,6 +229,17 @@ header {
     .todo-input-container input {
         width: 50%;
     }
+
+    .clear-btn-container {
+        width: 100%;
+        padding: 10px; /* Add some padding to the .clear-btn-container */
+    }
+
+    .btn-wrapper {
+        width: 70%;
+        margin: auto;
+    }
+
 }  
 
 /**
