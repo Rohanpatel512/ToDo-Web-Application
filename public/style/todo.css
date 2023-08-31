@@ -5,11 +5,6 @@
 }
 
 header {
-    /*
-    background-image: linear-gradient(rgba(255,140,0,0.5), rgba(255,140,0,0.9)), url('../images/background.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;*/
     background-image: linear-gradient(rgba(0, 136, 204, 0.8), rgba(0, 136, 204, 0.7));
     height: 100vh;
 }
@@ -172,11 +167,11 @@ header {
  */
 
 /**
- * Start of designing of clear button container
+ * Start of designing of button container
  */
-.clear-btn-container {
+.btn-container {
     width: 100%;
-    padding: 10px; /* Add some padding to the .clear-btn-container */
+    padding: 10px; 
     position: absolute;
     bottom: 5%;
 }
@@ -186,7 +181,7 @@ header {
     margin: auto;
 }
 
-.clear-btn-container button {
+.btn-container button {
     width: 100px;
     height: 50px;
     border: none;
@@ -202,7 +197,7 @@ header {
 
 
 /**
- * End of designing of clear button container 
+ * End of designing of button container 
  */
 
 
@@ -230,9 +225,9 @@ header {
         width: 50%;
     }
 
-    .clear-btn-container {
+    .btn-container {
         width: 100%;
-        padding: 10px; /* Add some padding to the .clear-btn-container */
+        padding: 10px; 
     }
 
     .btn-wrapper {
